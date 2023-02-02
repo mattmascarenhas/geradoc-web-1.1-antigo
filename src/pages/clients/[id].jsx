@@ -9,7 +9,7 @@ import InputPhoneNumber from "../../components/InputPhoneNumber";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 
-export async function getStaticProps(context) {
+export async function GetStaticProps(context) {
   const { params } = context;
   const data = await fetch(
     `https://web-production-2ecf.up.railway.app/clients/${params.id}`
@@ -22,7 +22,7 @@ export async function getStaticProps(context) {
   };
 }
 
-export async function getStaticPaths() {
+export async function GetStaticPaths() {
   const response = await fetch(
     `https://web-production-2ecf.up.railway.app/clients/`
   );

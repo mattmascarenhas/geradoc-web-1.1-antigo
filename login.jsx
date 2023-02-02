@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "./src/components/Logo";
 import { getSession, signIn } from "next-auth/react";
+import Link from "next/link";
 
 export function LoginScreen() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -90,12 +91,12 @@ export function LoginScreen() {
             >
               Login
             </button>
-            <a
+            <Link
               className="inline-block align-baseline font-bold text-sm text-yellow-500 hover:text-yellow-600"
               href="#"
             >
               Esqueceu a senha?
-            </a>
+            </Link>
           </div>
         </div>
       </form>

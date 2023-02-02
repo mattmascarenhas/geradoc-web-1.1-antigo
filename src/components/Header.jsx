@@ -1,4 +1,5 @@
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
 import Logo from "./Logo";
 
@@ -10,14 +11,14 @@ export function Header() {
   return (
     <header className="grid grid-cols-2 items-center bg-zinc-800 border-b-2  border-yellow-500 px-24">
       <div className="flex mx-8 justify-start my-5">
-        <a href="/">
+        <Link href="/">
           <Logo />
-        </a>
+        </Link>
       </div>
       <div>
         <ul className="flex gap-8  mx-8 text-2xl justify-end ">
           <li>
-            <a href="/">Início</a>
+            <Link href="/">Início</Link>
           </li>
           <li>
             <div
@@ -27,12 +28,15 @@ export function Header() {
               <span>Clientes</span>
               {isOpenClient && (
                 <div className="max-w-10rem bg-gray-500 absolute rounded-lg border-2 border-white ">
-                  <a href="/clients" className="block p-2 text-white">
+                  <Link href="/clients" className="block p-2 text-white">
                     Exibir Clientes
-                  </a>
-                  <a href="/clients/register" className="block p-2 text-white">
+                  </Link>
+                  <Link
+                    href="/clients/register"
+                    className="block p-2 text-white"
+                  >
                     Cadastrar Cliente
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -45,12 +49,12 @@ export function Header() {
               <span>Textos</span>
               {isOpenText && (
                 <div className="max-w-10rem bg-gray-500 absolute rounded-lg border-2 border-white">
-                  <a href="/texts" className="block p-2 text-white">
+                  <Link href="/texts" className="block p-2 text-white">
                     Exibir Textos
-                  </a>
-                  <a href="/texts/register" className="block p-2 text-white">
+                  </Link>
+                  <Link href="/texts/register" className="block p-2 text-white">
                     Cadastrar Texto
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -63,24 +67,27 @@ export function Header() {
               <span>Blocos</span>
               {isOpenBlock && (
                 <div className="max-w-10rem bg-gray-500 absolute rounded-lg border-2 border-white">
-                  <a href="/blocks" className="block p-2 text-white">
+                  <Link href="/blocks" className="block p-2 text-white">
                     Exibir Blocos
-                  </a>
-                  <a href="/blocks/register" className="block p-2 text-white">
+                  </Link>
+                  <Link
+                    href="/blocks/register"
+                    className="block p-2 text-white"
+                  >
                     Cadastrar Bloco
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/blocks/associate-text"
                     className="block p-2 text-white"
                   >
                     Associar Texto a um Bloco
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/blocks/associate-client"
                     className="block p-2 text-white"
                   >
                     Associar Bloco a um Cliente
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>

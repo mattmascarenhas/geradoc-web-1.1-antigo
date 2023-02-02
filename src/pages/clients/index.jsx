@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalViewClient from "../../components/ModalViewClient";
 import { getSession } from "next-auth/react";
+import Link from "next/link";
 
 export function Clients() {
   const [clients, setClients] = useState([]);
@@ -43,9 +44,9 @@ export function Clients() {
         </div>
         <div className=" m-8 items-center rounded-xl ">
           <button>
-            <a href="/clients/register">
+            <Link href="/clients/register">
               <Plus className="w-20 h-20" />
-            </a>
+            </Link>
           </button>
         </div>
       </div>
@@ -118,9 +119,9 @@ export function Clients() {
                         </Dialog.Trigger>
                         <ModalViewClient client={clientModal} />
                       </Dialog.Root>
-                      <a href={`/clients/${client.id}`}>
+                      <Link href={`/clients/${client.id}`}>
                         <PencilSimple size={26} />
-                      </a>
+                      </Link>
                       <button
                         type="button"
                         onClick={() => {

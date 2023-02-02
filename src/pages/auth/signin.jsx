@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
 import { getSession, signIn } from "next-auth/react";
 import Router from "next/router";
+import Link from "next/link";
 
 export function SignIn() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -96,12 +97,12 @@ export function SignIn() {
             >
               Login
             </button>
-            <a
+            <Link
               className="inline-block align-baseline font-bold text-sm text-yellow-500 hover:text-yellow-600"
               href="#"
             >
               Esqueceu a senha?
-            </a>
+            </Link>
           </div>
         </div>
       </form>
