@@ -1,0 +1,57 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+select,
+option {
+  @apply bg-gray-700 text-white;
+}
+
+/*classes para alterar o visual do editor de texto*/
+.ql-toolbar,
+.ql-snow {
+  @apply bg-white text-black  border-2 border-yellow-500;
+}
+.ql-editor,
+.ql-blank::before {
+  @apply text-black font-bold;
+}
+
+.quill {
+  @apply h-[65vh];
+}
+
+/*desabilita os eventos quando o botao for desabilitado*/
+button:disabled {
+  @apply pointer-events-none bg-gray-500 text-white;
+}
+
+input:disabled {
+  @apply pointer-events-none border-gray-101;
+}
+
+.HoverCardContent {
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.HoverCardArrow {
+  fill: white;
+}
+
+.ImageTrigger {
+  cursor: pointer;
+  border-radius: 100%;
+  display: inline-block;
+}
+.ImageTrigger:focus {
+  box-shadow: 0 0 0 2px white;
+}
