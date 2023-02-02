@@ -112,7 +112,7 @@ export function SignIn() {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function GetServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);

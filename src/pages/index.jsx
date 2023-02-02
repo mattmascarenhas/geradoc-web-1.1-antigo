@@ -10,7 +10,7 @@ import ModalEditText from "../components/ModalEditText";
 import * as HtmlDocx from "html-docx-js/dist/html-docx";
 import { getSession, useSession } from "next-auth/react";
 
-export function index() {
+export function Index() {
   //constante para capturar os dados da sessão
   const session = useSession();
   //lista de clientes, blocos e textos
@@ -491,7 +491,7 @@ export function index() {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function GetServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);
@@ -511,4 +511,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default index;
+export default Index;
