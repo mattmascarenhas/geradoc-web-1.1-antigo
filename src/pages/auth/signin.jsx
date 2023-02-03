@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Logo from "../../components/Logo";
 import { getSession, signIn } from "next-auth/react";
 import Router from "next/router";
@@ -12,17 +12,17 @@ export function SignIn() {
     password: "",
   });
 
-  useEffect(() => {
-    handleChange();
-  }, [data]);
-
-  function handleChange() {
+  const handleChange = useCallback(() => {
     if (data.email !== "" && data.password.length >= 6) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }
+  }, [data]);
+
+  useEffect(() => {
+    handleChange();
+  }, [data, handleChange]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -113,7 +113,7 @@ export function SignIn() {
   );
 }
 
-export async function GetServerSideProps(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);

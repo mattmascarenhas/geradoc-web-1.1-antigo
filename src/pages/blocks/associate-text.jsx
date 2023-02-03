@@ -12,7 +12,7 @@ export function AssociateText() {
     </div>
   );
 }
-export async function GetServerSideProps(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);

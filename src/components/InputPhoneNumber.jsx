@@ -6,7 +6,7 @@ export function InputPhoneNumber({ onChange, value, ...props }) {
 
   useEffect(() => {
     if (value) setPhoneNumber(value);
-  }, []);
+  }, [value]);
 
   function valueMasked(e) {
     setPhoneNumber(mask(unMask(e), ["(99)99999-9999"]));

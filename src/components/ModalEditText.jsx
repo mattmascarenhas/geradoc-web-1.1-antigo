@@ -13,7 +13,7 @@ export function ModalEditText(props) {
     if (valueText === "") {
       setValueText(props.text.texto);
     }
-  }, []);
+  }, [valueText, props.text.texto]);
 
   async function saveEditedText(event) {
     event.preventDefault();

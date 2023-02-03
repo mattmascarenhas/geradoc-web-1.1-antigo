@@ -167,7 +167,7 @@ export function Register() {
   );
 }
 
-export async function GetServerSideProps(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);

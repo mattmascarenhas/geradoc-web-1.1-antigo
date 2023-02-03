@@ -9,6 +9,7 @@ import ModalViewClient from "../components/ModalViewClient";
 import ModalEditText from "../components/ModalEditText";
 import * as HtmlDocx from "html-docx-js/dist/html-docx";
 import { getSession, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export function Index() {
   //constante para capturar os dados da sessão
@@ -306,9 +307,9 @@ export function Index() {
                                 </Dialog.Trigger>
                                 <ModalViewClient client={client} />
                               </Dialog.Root>
-                              <a href={`/clients/${client.id}`}>
+                              <Link href={`/clients/${client.id}`}>
                                 <PencilSimple size={26} />
-                              </a>
+                              </Link>
                               <button
                                 type="button"
                                 onClick={() => {
@@ -491,7 +492,7 @@ export function Index() {
   );
 }
 
-export async function GetServerSideProps(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);

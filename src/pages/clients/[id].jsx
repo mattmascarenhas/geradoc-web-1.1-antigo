@@ -9,7 +9,7 @@ import InputPhoneNumber from "../../components/InputPhoneNumber";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 
-export async function GetStaticProps(context) {
+export async function getStaticProps(context) {
   const { params } = context;
   const data = await fetch(
     `https://web-production-2ecf.up.railway.app/clients/${params.id}`
@@ -22,7 +22,7 @@ export async function GetStaticProps(context) {
   };
 }
 
-export async function GetStaticPaths() {
+export async function getStaticPaths() {
   const response = await fetch(
     `https://web-production-2ecf.up.railway.app/clients/`
   );
@@ -244,23 +244,4 @@ export function EditClient({ client }) {
   );
 }
 
-export async function GetServerSideProps(context) {
-  const session = await getSession(context);
-
-  console.log(session);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth/signin",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {
-      session,
-    },
-  };
-}
 export default EditClient;

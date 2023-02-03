@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DownloadSimple, Eye, Trash } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalViewBlock from "../../components/ModalViewBlock";
@@ -23,25 +23,8 @@ export function ShowBlocks() {
   //estado para o mecanismo de busca
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    axios("https://web-production-2ecf.up.railway.app/blocks").then((res) =>
-      setBlocks(res.data)
-    );
-    axios("https://web-production-2ecf.up.railway.app/clients").then((res) =>
-      setClients(res.data)
-    );
-    axios("https://web-production-2ecf.up.railway.app/clients-blocks").then(
-      (res) => setClientsBlocks(res.data)
-    );
-    axios("https://web-production-2ecf.up.railway.app/blocks-texts").then(
-      (res) => setBlocksTexts(res.data)
-    );
-    axios("https://web-production-2ecf.up.railway.app/texts").then((res) =>
-      setTexts(res.data)
-    );
-  }, []);
   // função para juntar o nome do cliente com o titulo do bloco para aparecer em tela
-  function associateToSave() {
+  const associateToSave = useCallback(() => {
     const result = [];
     if (blocks.length > 0) {
       blocks.forEach((block) => {
@@ -87,7 +70,26 @@ export function ShowBlocks() {
       }
     });
     setResult(result);
-  }
+  }, [blocks, clients, clientsBlocks]);
+
+  useEffect(() => {
+    axios("https://web-production-2ecf.up.railway.app/blocks").then((res) =>
+      setBlocks(res.data)
+    );
+    axios("https://web-production-2ecf.up.railway.app/clients").then((res) =>
+      setClients(res.data)
+    );
+    axios("https://web-production-2ecf.up.railway.app/clients-blocks").then(
+      (res) => setClientsBlocks(res.data)
+    );
+    axios("https://web-production-2ecf.up.railway.app/blocks-texts").then(
+      (res) => setBlocksTexts(res.data)
+    );
+    axios("https://web-production-2ecf.up.railway.app/texts").then((res) =>
+      setTexts(res.data)
+    );
+  }, [texts, blocks, clients, clientsBlocks, blocksTexts, associateToSave]);
+
   //função para deletar o bloco e as associoções feitas referente ao bloco
   async function deleteAssociation(id) {
     let conf = confirm("Deseja apagar o bloco?");
@@ -311,7 +313,7 @@ export function ShowBlocks() {
   );
 }
 
-export async function GetServerSideProps(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   console.log(session);
